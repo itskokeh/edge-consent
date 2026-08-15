@@ -1,6 +1,6 @@
 import { describe, expect, test } from "vitest";
 import { evaluateConsent, isConsentExpired } from "./engine.ts";
-import type { ConsentType } from "./types.ts";
+import type { ConsentPolicy } from "./types.ts";
 
 // 1. Create a baseline clean mock consent object
 const mockConsent = {
@@ -11,7 +11,7 @@ const mockConsent = {
 	allowedActors: ["dr-smith", "nurse-jones", 1283],
 	allowedPurposes: ["TREATMENT", "EMERGENCY"],
 	exceptedCategories: ["mental-health"],
-} satisfies ConsentType;
+} satisfies ConsentPolicy;
 
 describe("Healthcare Consent Engine - Functional Tests", () => {
 	test("should PERMIT valid authorization requests", () => {

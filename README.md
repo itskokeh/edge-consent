@@ -30,7 +30,7 @@ Integrate the pure validation functions directly into your backend routing layer
 
 ```typescript
 import { Hono } from 'hono'
-import { evaluateConsent, type HealthcareConsent } from '@kokeh/edge-consent'
+import { evaluateConsent, type ConsentType } from '@kokeh/edge-consent'
 
 const app = new Hono()
 
@@ -48,7 +48,7 @@ app.post('/api/v1/medical-records/access', async (c) => {
     allowedActors: record.allowed_actors, // e.g., ['dr-smith', 'clinic-east']
     allowedPurposes: record.allowed_purposes, // e.g., ['TREATMENT', 'RESEARCH']
     exceptedCategories: record.excepted_categories // e.g., ['mental-health']
-  } satisfies HealthcareConsent
+  } satisfies ConsentType
 
   // 2. Evaluate access safely via pure functions
   const decision = evaluateConsent(consentPolicy, { actorId, purpose, dataCategory })
@@ -70,7 +70,7 @@ app.post('/api/v1/medical-records/access', async (c) => {
 
 ### `evaluateConsent(consent, request)`
 
-Takes a `HealthcareConsent` policy object and an `AccessRequest`, returning a structured status object.
+Takes a `ConsentType` policy object and a `RequestType`, returning a structured status object.
 
 **Returns:**
 

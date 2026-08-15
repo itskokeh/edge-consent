@@ -1,2 +1,2 @@
-export { evaluateConsent } from "./src/engine";
-export type { ConsentType, RequestType, ResultType } from "./src/types";
+export { evaluateConsent, isConsentExpired } from "./src/engine";
+export type { AccessRequest, ConsentPolicy, Decision } from "./src/types";
