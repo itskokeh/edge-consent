@@ -1,3 +1,4 @@
+export { evaluateConsent } from "./src/engine";
 export {
 	AccessRequest,
 	ConsentStatus,
