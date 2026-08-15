@@ -6,7 +6,7 @@ export interface ConsentType {
 	status: "active" | "inactive" | "revoked";
 	/** Date or Time */
 	expiresAt: string | number | Date;
-	/** The specific actors (eg., Dr. Smith, Heavens Well Hospital) allowed to view data */
+	/** The specific actors (eg., Dr. Smith, Heavens Well Hospital, 239743) allowed to view data */
 	allowedActors: Array<string | number>;
 	/** Allowed clinical purposes, eg., ['TREATMENT', 'RESEARCH', 'EMERGENCY'] */
 	allowedPurposes: string[];
