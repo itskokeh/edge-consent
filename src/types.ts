@@ -1,9 +1,9 @@
-export type ConsentStatus = "active" | "inactive" | "revoked";
+// export type ConsentStatus = "active" | "inactive" | "revoked";
 
 export interface HealthcareConsent {
 	id: string | number;
 	patientId: string | number;
-	status: ConsentStatus;
+	status: "active" | "inactive" | "revoked";
 	/** Date or Time */
 	expiresAt: string | number | Date;
 	/** The specific actors (eg., Dr. Smith, Heavens Well Hospital) allowed to view data */

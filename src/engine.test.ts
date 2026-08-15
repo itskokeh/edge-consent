@@ -1,12 +1,13 @@
 import { describe, expect, test } from "vitest";
 import { evaluateConsent, isConsentExpired } from "./engine.ts";
-import type { HealthcareConsent } from "./types.ts";
+
+// import type { HealthcareConsent } from "./types.ts";
 
 // 1. Create a baseline clean mock consent object
-const mockConsent: HealthcareConsent = {
+const mockConsent = {
 	id: "consent-123",
 	patientId: "patient-456",
-	status: "active",
+	status: "active" as const,
 	expiresAt: new Date(Date.now() + 3600000).toISOString(), // 1 hour in the future
 	allowedActors: ["dr-smith", "nurse-jones", 1283],
 	allowedPurposes: ["TREATMENT", "EMERGENCY"],
