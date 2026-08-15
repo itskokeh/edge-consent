@@ -1,6 +1,6 @@
 # @kokeh/edge-consent
 
-A zero-dependency, ultra-lightweight, functional healthcare consent evaluation engine. Fully optimized for edge runtimes (Cloudflare Workers, Deno, Bun, LNode) and designed for high-performance API layers.
+A zero-dependency, ultra-lightweight, functional healthcare consent evaluation engine. Fully optimized for edge runtimes (Cloudflare Workers, Deno, Bun, LNode) plus (Node.js) and designed for high-performance API layers.
 
 ## Features
 
@@ -30,7 +30,7 @@ Integrate the pure validation functions directly into your backend routing layer
 
 ```typescript
 import { Hono } from 'hono'
-import { evaluateConsent, type ConsentType } from '@kokeh/edge-consent'
+import { evaluateConsent, type ConsentPolicy } from '@kokeh/edge-consent'
 
 const app = new Hono()
 
@@ -48,7 +48,7 @@ app.post('/api/v1/medical-records/access', async (c) => {
     allowedActors: record.allowed_actors, // e.g., ['dr-smith', 'clinic-east']
     allowedPurposes: record.allowed_purposes, // e.g., ['TREATMENT', 'RESEARCH']
     exceptedCategories: record.excepted_categories // e.g., ['mental-health']
-  } satisfies ConsentType
+  } satisfies ConsentPolicy
 
   // 2. Evaluate access safely via pure functions
   const decision = evaluateConsent(consentPolicy, { actorId, purpose, dataCategory })
@@ -70,7 +70,7 @@ app.post('/api/v1/medical-records/access', async (c) => {
 
 ### `evaluateConsent(consent, request)`
 
-Takes a `ConsentType` policy object and a `RequestType`, returning a structured status object.
+Takes a `ConsentPolicy` policy and an `AccessRequest` object, returning a structured status object.
 
 **Returns:**
 
@@ -81,7 +81,7 @@ Takes a `ConsentType` policy object and a `RequestType`, returning a structured 
 }
 ```
 
-### `isConsentExpired(consent)`
+### `isConsentExpired(consentDate)`
 
 Helper utility returning a strict boolean check against the `expiresAt` ISO timestamp boundary.
 
