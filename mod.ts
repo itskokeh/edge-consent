@@ -1,6 +1,2 @@
 export { evaluateConsent } from "./src/engine";
-export type {
-	AccessRequest,
-	EvaluationResult,
-	HealthcareConsent,
-} from "./src/types";
+export type { ConsentType, RequestType, ResultType } from "./src/types";

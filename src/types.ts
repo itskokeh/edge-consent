@@ -1,6 +1,6 @@
 // export type ConsentStatus = "active" | "inactive" | "revoked";
 
-export interface HealthcareConsent {
+export interface ConsentType {
 	id: string | number;
 	patientId: string | number;
 	status: "active" | "inactive" | "revoked";
@@ -14,14 +14,14 @@ export interface HealthcareConsent {
 	exceptedCategories?: string[];
 }
 
-export interface AccessRequest {
+export interface RequestType {
 	actorId: string | number;
 	purpose: string;
 	/** The classification category of the record being accessed */
 	dataCategory?: string;
 }
 
-export interface EvaluationResult {
+export interface ResultType {
 	allowed: boolean;
 	reason:
 		| "PERMITTED"

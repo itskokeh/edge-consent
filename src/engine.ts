@@ -1,14 +1,10 @@
-import type {
-	AccessRequest,
-	EvaluationResult,
-	HealthcareConsent,
-} from "./types";
+import type { ConsentType, RequestType, ResultType } from "./types";
 
 /** Validates if an access request complies with a given healthcare consent policy. */
 export function evaluateConsent(
-	consent: HealthcareConsent,
-	request: AccessRequest,
-): EvaluationResult {
+	consent: ConsentType,
+	request: RequestType,
+): ResultType {
 	if (consent.status !== "active") {
 		return { allowed: false, reason: "POLICY_INACTIVE" };
 	}
