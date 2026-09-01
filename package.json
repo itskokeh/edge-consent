@@ -1,16 +1,14 @@
 {
 	"name": "edge-consent",
 	"version": "1.0.0",
-	"private": true,
-	"description": "A lightweight, zero-dependency functional healthcare consent evaluation engine optimized for edge runtimes.",
 	"main": "index.js",
 	"scripts": {
 		"test": "vitest run",
 		"lint": "pnpm biome check --write .",
 		"format": "pnpm biome check --format write ."
 	},
-	"keywords": [],
-	"author": "",
+	"keywords": ["PBAC", "consent", "access control", "policy evaluation", "edge runtime"],
+	"author": "Emmanuel Okeke",
 	"license": "ISC",
 	"devEngines": {
 		"packageManager": {
