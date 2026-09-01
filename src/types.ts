@@ -2,14 +2,14 @@
 
 export interface ConsentPolicy {
 	id: string | number;
-	patientId: string | number;
+	subjectId: string | number;
 	status: "active" | "inactive" | "revoked";
 	/** Date or Time */
 	expiresAt: string | number | Date;
 	/** The specific actors (eg., Dr. Smith, Heavens Well Hospital, 239743) allowed to view data */
-	allowedActors: Array<string | number>;
+	allowedActors: Array<string | number> | "*";
 	/** Allowed clinical purposes, eg., ['TREATMENT', 'RESEARCH', 'EMERGENCY'] */
-	allowedPurposes: string[];
+	allowedPurposes: string[] | "*";
 	/** Data categories explicitly blocked by the patient (eg., ['mental-health', 'hiv']) */
 	exceptedCategories?: string[];
 }

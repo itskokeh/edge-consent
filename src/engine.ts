@@ -2,28 +2,28 @@ import type { AccessRequest, ConsentPolicy, Decision } from "./types";
 
 /** Validates if an access request complies with a given healthcare consent policy. */
 export function evaluateConsent(
-	consent: ConsentPolicy,
+	policy: ConsentPolicy,
 	request: AccessRequest,
 ): Decision {
-	if (consent.status !== "active") {
+	if (policy.status !== "active") {
 		return { allowed: false, reason: "POLICY_INACTIVE" };
 	}
 
-	if (isConsentExpired(consent.expiresAt)) {
+	if (isConsentExpired(policy.expiresAt)) {
 		return { allowed: false, reason: "POLICY_EXPIRED" };
 	}
 
-	if (!consent.allowedActors.includes(request.actorId)) {
+	if (policy.allowedActors !== "*" && !policy.allowedActors.includes(request.actorId)) {
 		return { allowed: false, reason: "ACTOR_NOT_PERMITTED" };
 	}
 
-	if (!consent.allowedPurposes.includes(request.purpose.toUpperCase())) {
+	if (policy.allowedPurposes !== "*" && !policy.allowedPurposes.includes(request.purpose.toUpperCase())) {
 		return { allowed: false, reason: "PURPOSE_NOT_PERMITTED" };
 	}
 
 	if (
 		request.dataCategory &&
-		consent.exceptedCategories?.includes(request.dataCategory.toLowerCase())
+		policy.exceptedCategories?.includes(request.dataCategory.toLowerCase())
 	) {
 		return { allowed: false, reason: "CATEGORY_EXCEPTED" };
 	}
