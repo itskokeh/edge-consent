@@ -3,15 +3,15 @@ import { evaluateConsent, isConsentExpired } from "./engine.ts";
 import type { ConsentPolicy } from "./types.ts";
 
 // 1. Create a baseline clean mock consent object
-const mockConsent = {
+const mockConsent: ConsentPolicy = {
 	id: "consent-123",
-	patientId: "patient-456",
+	subjectId: "patient-456",
 	status: "active",
 	expiresAt: new Date(Date.now() + 3600000).toISOString(), // 1 hour in the future
 	allowedActors: ["dr-smith", "nurse-jones", 1283],
 	allowedPurposes: ["TREATMENT", "EMERGENCY"],
 	exceptedCategories: ["mental-health"],
-} satisfies ConsentPolicy;
+}
 
 describe("Healthcare Consent Engine - Functional Tests", () => {
 	test("should PERMIT valid authorization requests", () => {
