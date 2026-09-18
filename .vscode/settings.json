@@ -4,5 +4,6 @@
 		"source.organizeImports.biome": "explicit",
 		"source.fixAll.biome": "explicit",
 		"source.biome": "explicit"
-	}
+	},
+	"cSpell.words": ["Okeke"]
 }
